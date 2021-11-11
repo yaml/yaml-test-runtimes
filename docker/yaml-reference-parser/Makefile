@@ -5,4 +5,4 @@ DOCKER_DEPS := yaml-reference-parser
 include ../../.common.mk
 
 yaml-reference-parser:
-	git clone https://github.com/yaml/$@ $@
+	git clone --branch=devel https://github.com/yaml/$@ $@
