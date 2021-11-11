@@ -1,11 +1,29 @@
-.PHONY: all clean
+include .common.mk
 
-GO_BINARIES=go-yaml-test
+DOCKER_BUILD := \
+    alpine-builder \
+    go-yaml \
+    yaml-reference-parser \
+    main
 
-all: $(GO_BINARIES)
+DOCKER_DIRS := $(DOCKER_BUILD:%=docker/%)
+DOCKER_BUILT := $(DOCKER_DIRS:%=%/BUILT)
 
-%: cmd/%/*.go
-	go build -o $@ $^
+CLEAN_TARGETS := $(DOCKER_BUILD:%=clean-%)
 
-clean:
-	@rm -f $(GO_BINARIES)
+
+build: $(DOCKER_BUILT)
+
+push shell: build
+	make -C docker/main docker-$@
+
+clean:: $(CLEAN_TARGETS)
+
+yaml-reference-parser:
+	git clone --branch=devel git@github.com:yaml/$@ $@
+
+docker/%/BUILT: docker/%
+	make -C $< docker-build
+
+clean-%: docker/%
+	make -C $< clean

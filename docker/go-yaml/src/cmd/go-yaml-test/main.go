@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"io/ioutil"
 
@@ -10,16 +9,7 @@ import (
 )
 
 func main() {
-
-	if len(os.Args) <= 1 {
-		log.Fatal("Missing file argument")
-	}
-	file := os.Args[1]
-
-	data, err := ioutil.ReadFile(file)
-	if err != nil {
-		log.Fatal("ReadFile() of " + file + " failed: " + err.Error())
-	}
+	data, _ := ioutil.ReadAll(os.Stdin)
 
 	t := yaml.NewTester(data)
 	var str *string
