@@ -10,12 +10,11 @@ DOCKER_BUILD := \
     main
 
 DOCKER_DIRS := $(DOCKER_BUILD:%=docker/%)
-DOCKER_BUILT := $(DOCKER_DIRS:%=%/BUILT)
 
 CLEAN_TARGETS := $(DOCKER_BUILD:%=clean-%)
 
 
-build: $(DOCKER_BUILT)
+build: $(DOCKER_DIRS)
 
 push shell: build
 	make -C docker/main docker-$@
@@ -25,8 +24,10 @@ clean:: $(CLEAN_TARGETS)
 yaml-reference-parser:
 	git clone --branch=devel git@github.com:yaml/$@ $@
 
-docker/%/BUILT: docker/%
-	make -C $< docker-build
+$(DOCKER_DIRS): force
+	make -C $@ docker-build
 
-clean-%: docker/%
+clean-%: docker/%/
 	make -C $< clean
+
+force:
