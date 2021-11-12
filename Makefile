@@ -1,9 +1,12 @@
 include .common.mk
 
 DOCKER_BUILD := \
-    alpine-builder \
-    go-yaml \
-    yaml-reference-parser \
+    alpine \
+    c \
+    go \
+    node \
+    perl \
+    python \
     main
 
 DOCKER_DIRS := $(DOCKER_BUILD:%=docker/%)

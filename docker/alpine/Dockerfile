@@ -2,12 +2,20 @@ FROM alpine:latest
 
 RUN apk update \
  && apk add \
+        autoconf \
+        automake \
         bash \
         build-base \
         curl \
         git \
         go \
+        libtool \
+        perl \
         perl-app-cpanminus \
+        pkgconf \
+        python3 \
+        py3-pip \
+        the_silver_searcher \
         tig \
         vim \
         wget \
@@ -20,7 +28,7 @@ RUN cpanm -n \
  && true
 
 RUN mkdir -p \
-        /export/bin \
-        /export/lib \
-        /export/perl5/lib/perl5 \
+        /export/usr/local/bin \
+        /export/usr/local/lib \
+        /export/usr/local/share/perl5/site_perl \
  && true

@@ -20,8 +20,10 @@ docker-build:: $(DOCKER_DEPS)
 	touch BUILT
 
 docker-shell:: docker-build
+	touch /tmp/docker-bash-history
 	docker run -it --rm \
 	    -v $(ROOT):/host \
+	    -v /tmp/docker-bash-history:/root/.bash_history \
 	    -w /host \
 	    $(DOCKER_IMAGE) \
 	    bash
