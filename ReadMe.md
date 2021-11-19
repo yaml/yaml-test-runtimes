@@ -7,30 +7,46 @@ This repo produces a Docker image called `yamlio/yaml-test-runtimes`.
 make build
 ```
 
-It contains the runtimes for the following YAML parsing test programs:
+It contains the following YAML parsing test programs and their supporting
+runtime requirements:
 
-* c-libfyaml-event -- C (local)
-* c-libyaml-event -- C (remote)
-* dotnet-yamldotnet-event -- .NET (remote)
-* go-yaml-test -- Go (local)
-* hs-hsyaml-event -- Haskell (remote)
-* hs-reference-yeast -- Haskell (remote)
-* java-snakeyaml-event -- Java (remote)
-* js-yaml-event -- NodeJS (local)
-* nim-nimyaml-event -- Nim (remote)
-* perl-pp-event -- Perl (local)
-* py-pyyaml-event -- Python (local)
-* py-ruamel-event -- Python (local)
-* yaml-reference-parser -- Perl (local)
+* `yaml-test-parse-dotnet`   -- https://github.com/aaubry/YamlDotNet
+* `yaml-test-parse-goyaml`   -- https://github.com/go-yaml/yaml
+* `yaml-test-parse-hsref`    -- https://github.com/orenbenkiki/yamlreference
+* `yaml-test-parse-hsyaml`   -- https://github.com/haskell-hvr/HsYAML
+* `yaml-test-parse-libfyaml` -- https://github.com/pantoniou/libfyaml
+* `yaml-test-parse-libyaml`  -- https://github.com/yaml/libyaml
+* `yaml-test-parse-nimyaml`  -- https://github.com/flyx/NimYAML
+* `yaml-test-parse-npmyaml`  -- https://github.com/eemeli/yaml
+* `yaml-test-parse-pyyaml`   -- https://github.com/yaml/pyyaml
+* `yaml-test-parse-ruamel`   -- https://pypi.org/project/ruamel.yaml/
+* `yaml-test-parse-snake`    -- https://bitbucket.org/snakeyaml/snakeyaml
+* `yaml-test-parse-yamlpp`   -- https://github.com/perlpunk/YAML-PP-p5
+* `yaml-test-parse-yamlref`  -- https://github.com/yaml/yaml-reference-parser
 
-The runtimes marked "remote" are currently copied from the Docker image
-`yamlio/yaml-editor`.
+## Making the Docker Image
 
-The local runtimes are built in separate images under the `docker/` directory.
+The `make build` command will build each of the runtimes and combine them into
+the final image.
 
-The final Docker image is based on the latest `alpine` image with the necessary
-files copied in from the other images.
-The image is currently around 375MB in size.
+The final Docker image is tagged `yamlio/yaml-test-runtimes:0.0.x` and is
+pushed to hub.docker.com.
+It is based on the latest `alpine` image with the necessary files copied in
+from the other images.
+It's currently around 400MB in size.
+
+## Repository Layout
+
+* `Makefile` -- Automates all the tasks.
+* `Content.mk` -- All the runtime sources and version info is defined in this
+  file.
+* `docker/` -- Each runtime component is defined in a subdirectory of this.
+  * `Makefile` -- This Makefile is used to build each runtime.
+  * `main/` -- The Dockerfile for building the final image.
+  * `alpine/` -- A base image Dockerfile used for many runtime builds.
+  * `*/` -- There is one Dockerfile directory for each defined runtime.
+
+## Used By
 
 This image is used by the following projects:
 
@@ -42,15 +58,8 @@ This image is used by the following projects:
 
   For interactive testing against all supported parsers.
 
-# Testing the Build
+## Testing the Build
 
-Running `make shell` will build the Docker image and then start a Bash shell in
-a container running the image.
-
-From this Bash prompt, run `check-testers`.
-It will try each parser with the input:
-```
-foo: bar
-```
-
-Run `exit` to leave the Docker Bash shell.
+Running `make test` will build the Docker image and then run a container from
+it and run a simple test program.
+The tester calls each parser with the YAML input string `foo: bar`.

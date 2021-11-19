@@ -3,9 +3,9 @@ include Content.mk
 
 DOCKER_RUNTIMES := \
     dotnet \
+    goyaml \
     hsref \
     hsyaml \
-    goyaml \
     libfyaml \
     libyaml \
     nimyaml \
