@@ -1,0 +1,29 @@
+FROM alpine:3.10.2
+
+ARG REPO
+ARG TAG
+
+RUN apk update \
+ && apk add \
+        bash \
+        cabal \
+        g++ \
+        ghc \
+        git \
+        musl \
+        vim \
+        wget \
+ && true
+
+RUN git clone --branch=$TAG $REPO /build
+
+WORKDIR /build
+
+RUN cabal update \
+ && cabal new-build exe:yaml-test \
+ && true
+
+RUN mkdir -p /export/usr/local/bin \
+ && cp \
+        dist-newstyle/build/x86_64-linux/ghc-8.4.3/HsYAML-0.2.1.0/x/yaml-test/build/yaml-test/yaml-test \
+        /export/usr/local/bin/hsyaml-parser

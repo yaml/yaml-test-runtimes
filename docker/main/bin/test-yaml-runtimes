@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -e -u -o pipefail
+
+testers=(
+  yaml-test-parse-dotnet
+  yaml-test-parse-goyaml
+  yaml-test-parse-hsref
+  yaml-test-parse-hsyaml
+  yaml-test-parse-libfyaml
+  yaml-test-parse-libyaml
+  yaml-test-parse-nimyaml
+  yaml-test-parse-npmyaml
+  yaml-test-parse-pyyaml
+  yaml-test-parse-ruamel
+  yaml-test-parse-snake
+  yaml-test-parse-yamlpp
+  yaml-test-parse-yamlref
+)
+
+i=0
+for tester in "${testers[@]}"; do
+  echo ============================================
+  printf '%d) %s\n' $((++i)) "$tester"
+  (echo 'foo: bar' | "$tester") || true
+done

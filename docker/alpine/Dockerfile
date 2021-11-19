@@ -21,13 +21,8 @@ RUN apk update \
         wget \
  && true
 
-RUN cpanm -n \
-        Capture::Tiny \
-        XXX \
-        YAML::PP \
- && true
-
 RUN mkdir -p \
+        /export/usr/lib \
         /export/usr/local/bin \
         /export/usr/local/lib \
         /export/usr/local/share/perl5/site_perl \

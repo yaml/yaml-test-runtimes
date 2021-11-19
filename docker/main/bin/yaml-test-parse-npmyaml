@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const { testEvents } = require('yaml/dist/test-events')
+
+const src = fs.readFileSync('/dev/stdin').toString()
+const { events, error } = testEvents(src)
+fs.writeSync(1, events.join('\n') + '\n')
+if (error) {
+  fs.writeSync(2, error)
+  process.exit(1)
+}
