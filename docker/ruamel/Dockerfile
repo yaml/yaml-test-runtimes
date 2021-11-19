@@ -1,4 +1,4 @@
-FROM yamlio/yaml-test-alpine-base:0.0.1
+FROM yamlio/yaml-test-alpine:0.0.1
 
 ARG TAG
 
