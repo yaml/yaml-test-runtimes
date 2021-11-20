@@ -1,5 +1,5 @@
-FROM alpine:3.10.2
-
+ARG FROM
+FROM $FROM
 ARG REPO
 ARG TAG
 

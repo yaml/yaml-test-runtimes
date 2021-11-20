@@ -1,4 +1,5 @@
 # Version/tag ARG variables:
+ARG ALPINE
 ARG DOTNET
 ARG GOYAML
 ARG HSREF
@@ -30,7 +31,7 @@ FROM yamlio/yaml-test-yamlref:$YAMLREF   AS yamlref
 
 
 # Build the main image 'yaml-test-runtimes':
-FROM alpine:3.14
+FROM alpine:$ALPINE
 
 # Install alpine runtime requirements:
 RUN apk update \
@@ -44,7 +45,7 @@ RUN apk update \
         nodejs \
         perl \
         python3 \
- && ln /usr/lib/libffi.so.7.1.0 /usr/lib/libffi.so.6 \
+ && ln /usr/lib/libffi.so.8.1.0 /usr/lib/libffi.so.6 \
  && true
 
 # COPY in local bin scripts:

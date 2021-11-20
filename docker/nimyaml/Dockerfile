@@ -1,5 +1,5 @@
-FROM nimlang/nim:1.6.0-alpine
-
+ARG FROM
+FROM $FROM
 ARG REPO
 ARG TAG
 

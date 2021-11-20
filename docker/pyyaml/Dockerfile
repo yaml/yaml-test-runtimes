@@ -1,5 +1,5 @@
-FROM yamlio/yaml-test-alpine:0.0.1
-
+ARG FROM
+FROM $FROM
 ARG TAG
 
 RUN apk add python3-dev

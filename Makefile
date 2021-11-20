@@ -1,25 +1,8 @@
 include Content.mk
 
-
-DOCKER_RUNTIMES := \
-    dotnet \
-    goyaml \
-    hsref \
-    hsyaml \
-    libfyaml \
-    libyaml \
-    nimyaml \
-    npmyaml \
-    pyyaml \
-    ruamel \
-    snake \
-    yamlpp \
-    yamlref \
-
-DOCKER_RUNTIMES := $(DOCKER_RUNTIMES:%=docker/%)
+DOCKER_RUNTIMES := $(RUNTIMES:%=docker/%)
 
 QMAKE := $(MAKE) --no-print-directory
-
 
 
 build: docker/alpine $(DOCKER_RUNTIMES) docker/main
@@ -31,13 +14,9 @@ test: build
 	$(QMAKE) -C docker/main -f ../Makefile docker-shell \
 	    CMD=test-yaml-runtimes
 
-force:
-	rm -fr .git/cache
-
-
 docker/main: always
 	$(QMAKE) -C $@ -f ../Makefile docker-build \
-	    DOCKER_ARGS='$(DOCKER_BUILD_ARGS)'
+	    DOCKER_ARGS='--build-arg ALPINE=$(ALPINE) $(DOCKER_BUILD_ARGS)'
 
 docker/alpine $(DOCKER_RUNTIMES): always
 	$(QMAKE) -C $@ -f ../Makefile docker-build

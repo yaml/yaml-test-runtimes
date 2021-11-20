@@ -1,5 +1,5 @@
-FROM yamlio/yaml-test-alpine:0.0.1
-
+ARG FROM
+FROM $FROM
 ARG REPO
 ARG TAG
 

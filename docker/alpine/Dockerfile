@@ -1,4 +1,5 @@
-FROM alpine:latest
+ARG FROM
+FROM $FROM
 
 RUN apk update \
  && apk add \

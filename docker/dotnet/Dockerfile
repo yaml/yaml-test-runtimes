@@ -1,5 +1,5 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
-
+ARG FROM
+FROM $FROM
 ARG REPO
 ARG TAG
 
