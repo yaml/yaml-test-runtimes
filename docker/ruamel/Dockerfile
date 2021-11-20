@@ -11,3 +11,5 @@ RUN mkdir -p /export/usr/lib/python3.9/site-packages \
         /usr/lib/python3.9/site-packages/* \
         /export/usr/lib/python3.9/site-packages/ \
  && true
+
+COPY bin/* /export/usr/local/bin/

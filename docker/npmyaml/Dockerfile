@@ -23,3 +23,5 @@ RUN mv yaml-* /tmp/ \
  && rm -f node_modules/yaml/package.json \
  && mv node_modules /export/ \
  && true
+
+COPY bin/* /export/usr/local/bin/

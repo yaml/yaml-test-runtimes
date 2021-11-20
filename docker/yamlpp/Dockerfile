@@ -11,3 +11,5 @@ RUN cp -Pr \
         /usr/local/share/perl5/site_perl/* \
         /export/usr/local/share/perl5/site_perl/ \
  && true
+
+COPY bin/* /export/usr/local/bin/

@@ -11,6 +11,8 @@ RUN ./bootstrap.sh \
  && ./configure \
  && make install
 
+COPY bin/* /export/usr/local/bin/
+
 RUN cp -P \
         /usr/local/bin/fy-tool \
         /export/usr/local/bin/ \

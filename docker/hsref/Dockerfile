@@ -26,7 +26,8 @@ RUN git init --quiet \
 RUN cabal update \
  && cabal new-build exe:yaml2yeast
 
-RUN mkdir -p /export/usr/local/bin \
- && cp \
-    dist-newstyle/build/x86_64-linux/ghc-8.4.3/YamlReference-0.10.0/x/yaml2yeast/build/yaml2yeast/yaml2yeast \
-    /export/usr/local/bin/
+COPY bin/* /export/usr/local/bin/
+
+RUN cp \
+        dist-newstyle/build/x86_64-linux/ghc-8.4.3/YamlReference-0.10.0/x/yaml2yeast/build/yaml2yeast/yaml2yeast \
+        /export/usr/local/bin/

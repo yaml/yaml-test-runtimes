@@ -15,6 +15,8 @@ RUN ./bootstrap \
  && ./configure \
  && make
 
+COPY bin/* /export/usr/local/bin/
+
 RUN cp -P \
         src/.libs/libyaml*so* \
         /export/usr/lib \
@@ -22,4 +24,3 @@ RUN cp -P \
         tests/.libs/run-parser-test-suite \
         /export/usr/local/bin/libyaml-parser \
  && true
-
