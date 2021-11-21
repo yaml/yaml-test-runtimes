@@ -14,7 +14,7 @@ ARG SNAKE
 ARG YAMLPP
 ARG YAMLREF
 
-# Images to COPY from:
+# Images to COPY runtime files from:
 FROM yamlio/yaml-test-dotnet:$DOTNET     AS dotnet
 FROM yamlio/yaml-test-goyaml:$GOYAML     AS goyaml
 FROM yamlio/yaml-test-hsref:$HSREF       AS hsref
@@ -29,6 +29,10 @@ FROM yamlio/yaml-test-snake:$SNAKE       AS snake
 FROM yamlio/yaml-test-yamlpp:$YAMLPP     AS yamlpp
 FROM yamlio/yaml-test-yamlref:$YAMLREF   AS yamlref
 
+# Need older libffi for Haskell runtimes:
+FROM alpine:3.10                         AS alpine310
+RUN apk update && apk add libffi
+
 
 # Build the main image 'yaml-test-runtimes':
 FROM alpine:$ALPINE
@@ -36,7 +40,6 @@ FROM alpine:$ALPINE
 # Install alpine runtime requirements:
 RUN apk update \
  && apk add \
-        bash \
         gmp \
         icu-libs \
         libffi \
@@ -45,8 +48,12 @@ RUN apk update \
         nodejs \
         perl \
         python3 \
- && ln /usr/lib/libffi.so.8.1.0 /usr/lib/libffi.so.6 \
  && true
+
+# Needed for old Haskell runtimes:
+COPY --from=alpine310 \
+        /usr/lib/libffi.so.6 \
+        /usr/lib/libffi.so.6
 
 # COPY in local bin scripts:
 COPY bin/* /usr/local/bin/

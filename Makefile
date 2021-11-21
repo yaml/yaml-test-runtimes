@@ -5,6 +5,9 @@ DOCKER_RUNTIMES := $(RUNTIMES:%=docker/%)
 QMAKE := $(MAKE) --no-print-directory
 
 
+force:
+	rm -fr $(BUILT)
+
 build: docker/alpine $(DOCKER_RUNTIMES) docker/main
 
 push shell: build

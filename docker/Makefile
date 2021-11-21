@@ -2,46 +2,53 @@ SHELL := bash
 
 NAME ?= $(shell basename $(shell pwd))
 
-VAR := $(shell perl -e '$$_=uc("$(NAME)");print')
+VAR := $(shell echo $(NAME) | tr a-z A-Z)
 
 ROOT := $(shell git rev-parse --show-toplevel)
 
-include $(ROOT)/Content.mk
+BUILT := $(ROOT)/.git/built
+$(shell mkdir -p $(BUILT))
 
-ifdef REPO_$(VAR)
-    GIT_REPO := $(REPO_$(VAR))
-endif
-ifdef TAG_$(VAR)
-    TAG := $(TAG_$(VAR))
-endif
+include $(ROOT)/Content.mk
 
 DOCKER_USER ?= yamlio
 
+ifdef TAG_$(VAR)
+    TAG := $(TAG_$(VAR))
+endif
+ifdef TAG
+    DOCKER_ARGS += --build-arg TAG=$(TAG)
+endif
 ifdef IMAGE_$(VAR)
     DOCKER_IMAGE := $(DOCKER_USER)/$(IMAGE_$(VAR)):$(TAG)
 else
     DOCKER_IMAGE := $(DOCKER_USER)/yaml-test-$(NAME):$(TAG)
 endif
+ifdef REPO_$(VAR)
+    DOCKER_ARGS += --build-arg REPO=$(REPO_$(VAR))
+endif
 ifdef FROM_$(VAR)
     DOCKER_ARGS += --build-arg FROM=$(FROM_$(VAR))
 endif
-ifdef GIT_REPO
-    DOCKER_ARGS += --build-arg REPO=$(GIT_REPO)
+
+BUILD := $(BUILT)/$(NAME)-$(TAG)
+ifeq (main,$(NAME))
+    DEPS := $(shell find $(ROOT)/docker)
+else
+    DEPS := $(shell find $(ROOT)/docker/$(NAME) -type f)
 endif
-ifdef TAG
-    DOCKER_ARGS += --build-arg TAG=$(TAG)
-endif
+BUILD += \
+    $(ROOT)/Makefile \
+    $(ROOT)/docker/Makefile \
 
 CMD ?= bash
 
-
-
 default:
 
-docker-build::
-	docker build \
-	    $(DOCKER_ARGS) \
-	    -t $(DOCKER_IMAGE) .
+force:
+	rm -fr $(BUILD)
+
+docker-build:: $(BUILD)
 
 docker-shell::
 	touch /tmp/docker-bash-history
@@ -54,3 +61,9 @@ docker-shell::
 
 docker-push::
 	docker push $(DOCKER_IMAGE)
+
+$(BUILD): $(DEPS)
+	docker build \
+	    $(DOCKER_ARGS) \
+	    -t $(DOCKER_IMAGE) .
+	touch $@

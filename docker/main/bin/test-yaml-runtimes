@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 set -e -u -o pipefail
 
-testers=(
+testers="
   yaml-test-parse-dotnet
   yaml-test-parse-goyaml
   yaml-test-parse-hsref
@@ -16,10 +16,10 @@ testers=(
   yaml-test-parse-snake
   yaml-test-parse-yamlpp
   yaml-test-parse-yamlref
-)
+"
 
 i=0
-for tester in "${testers[@]}"; do
+for tester in $testers; do
   echo ============================================
   printf '%d) %s\n' $((++i)) "$tester"
   (echo 'foo: bar' | "$tester") || true
