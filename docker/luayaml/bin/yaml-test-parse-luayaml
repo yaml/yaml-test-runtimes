@@ -29,24 +29,41 @@ for event in parser(yaml) do
   local etype = events[event.type]
   local style = event.style
   local line = etype
-  if etype == '=VAL' then
-    line = line .. ' ' .. scalar[event.style]
-    local value = event.value
-    value = value:gsub('\n', '\\n')
-    value = value:gsub('\t', '\\t')
-    line = line .. value
-  elseif style == 'FLOW' then
+  local anchor = event.anchor
+  local tag = event.tag
+
+  if style == 'FLOW' then
     if etype == '+MAP' then
       line = line .. ' ' .. '{}'
     elseif etype == '+SEQ' then
       line = line .. ' ' .. '[]'
     end
+  end
+
+  if anchor ~= nil and etype ~= '=ALI' then
+    line = line .. ' &' .. anchor
+  end
+
+  if tag ~= nil then
+    line = line .. ' <' .. tag .. '>'
+  end
+
+  if etype == '=VAL' then
+    line = line .. ' ' .. scalar[event.style]
+    local value = event.value
+    value = value:gsub('\\', '\\\\')
+    value = value:gsub('\b', '\\b')
+    value = value:gsub('\n', '\\n')
+    value = value:gsub('\r', '\\r')
+    value = value:gsub('\t', '\\t')
+    line = line .. value
   elseif etype == '=ALI' then
-    line = line .. ' ' .. event.anchor
+    line = line .. ' *' .. event.anchor
   elseif etype == '+DOC' and not event.implicit then
     line = line .. ' ' .. '---'
   elseif etype == '-DOC' and not event.implicit then
     line = line .. ' ' .. '...'
   end
+
   print(line)
 end
