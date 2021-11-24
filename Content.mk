@@ -14,6 +14,16 @@ FROM_ALPINE   := alpine:$(ALPINE)
 
 # YAML testing runtime sources:
 
+REPO_REFPARSE := https://github.com/yaml/yaml-reference-parser
+TAG_REFPARSE  := c4bc42e16cc5f4bd1d74adff08cfc8cd0f29998c
+FROM_REFPARSE := yamlio/yaml-test-alpine:$(TAG_ALPINE)
+$(call add,REFPARSE)
+
+REPO_REFHS    := https://github.com/orenbenkiki/yamlreference
+TAG_REFHS     := bf471f804ccd014fcdded3a8c74c338df8f33c85
+FROM_REFHS    := alpine:3.10.2
+$(call add,REFHS)
+
 REPO_DOTNET   := https://github.com/aaubry/YamlDotNet
 TAG_DOTNET    := 11.2.1
 FROM_DOTNET   := mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
@@ -23,11 +33,6 @@ REPO_GOYAML   := https://github.com/pantoniou/yaml
 TAG_GOYAML    := 571fa4dbd242ebc69b88b8eb4f55c878465bb8b0
 FROM_GOYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,GOYAML)
-
-REPO_HSREF    := https://github.com/orenbenkiki/yamlreference
-TAG_HSREF     := bf471f804ccd014fcdded3a8c74c338df8f33c85
-FROM_HSREF    := alpine:3.10.2
-$(call add,HSREF)
 
 REPO_HSYAML   := https://github.com/haskell-hvr/HsYAML
 TAG_HSYAML    := v0.2.1.0
@@ -59,6 +64,11 @@ TAG_NPMYAML   := v2.0.0-9
 FROM_NPMYAML  := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,NPMYAML)
 
+# Installed from CPAN
+TAG_PPYAML    := 0.030
+FROM_PPYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
+$(call add,PPYAML)
+
 # Installed from PyPI
 TAG_PYYAML    := 6.0
 FROM_PYYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
@@ -73,15 +83,5 @@ REPO_SNAKE    := https://bitbucket.org/snakeyaml/snakeyaml
 TAG_SNAKE     := 1ae5d5b705e19dab3344bd080a4ea08d69295fde
 FROM_SNAKE    := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,SNAKE)
-
-# Installed from CPAN
-TAG_YAMLPP    := 0.030
-FROM_YAMLPP   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
-$(call add,YAMLPP)
-
-REPO_YAMLREF  := https://github.com/yaml/yaml-reference-parser
-TAG_YAMLREF   := c4bc42e16cc5f4bd1d74adff08cfc8cd0f29998c
-FROM_YAMLREF  := yamlio/yaml-test-alpine:$(TAG_ALPINE)
-$(call add,YAMLREF)
 
 RUNTIMES := $(shell echo "$(RUNTIMES)" | tr A-Z a-z)

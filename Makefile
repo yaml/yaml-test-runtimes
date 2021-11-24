@@ -6,7 +6,7 @@ QMAKE := $(MAKE) --no-print-directory
 
 
 force:
-	rm -fr $(BUILT)
+	rm -fr .git/built/
 
 build: docker/alpine $(DOCKER_RUNTIMES) docker/main
 
