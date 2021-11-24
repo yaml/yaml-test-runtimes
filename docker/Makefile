@@ -37,7 +37,7 @@ ifeq (main,$(NAME))
 else
     DEPS := $(shell find $(ROOT)/docker/$(NAME) -type f)
 endif
-BUILD += \
+DEPS += \
     $(ROOT)/Makefile \
     $(ROOT)/docker/Makefile \
 
@@ -50,7 +50,7 @@ force:
 
 docker-build:: $(BUILD)
 
-docker-shell::
+docker-shell:: docker-build
 	touch /tmp/docker-bash-history
 	docker run -it --rm \
 	    -v $(ROOT):/host \

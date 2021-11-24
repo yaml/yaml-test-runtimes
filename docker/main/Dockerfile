@@ -6,6 +6,7 @@ ARG HSREF
 ARG HSYAML
 ARG LIBFYAML
 ARG LIBYAML
+ARG LUAYAML
 ARG NIMYAML
 ARG NPMYAML
 ARG PYYAML
@@ -21,6 +22,7 @@ FROM yamlio/yaml-test-hsref:$HSREF       AS hsref
 FROM yamlio/yaml-test-hsyaml:$HSYAML     AS hsyaml
 FROM yamlio/yaml-test-libfyaml:$LIBFYAML AS libfyaml
 FROM yamlio/yaml-test-libyaml:$LIBYAML   AS libyaml
+FROM yamlio/yaml-test-luayaml:$LUAYAML   AS luayaml
 FROM yamlio/yaml-test-nimyaml:$NIMYAML   AS nimyaml
 FROM yamlio/yaml-test-npmyaml:$NPMYAML   AS npmyaml
 FROM yamlio/yaml-test-pyyaml:$PYYAML     AS pyyaml
@@ -44,6 +46,7 @@ RUN apk update \
         icu-libs \
         libffi \
         libintl \
+        lua \
         openjdk8-jre \
         nodejs \
         perl \
@@ -65,6 +68,7 @@ COPY --from=hsref     /export/ /
 COPY --from=hsyaml    /export/ /
 COPY --from=libfyaml  /export/ /
 COPY --from=libyaml   /export/ /
+COPY --from=luayaml   /export/ /
 COPY --from=nimyaml   /export/ /
 COPY --from=npmyaml   /export/ /
 COPY --from=pyyaml    /export/ /

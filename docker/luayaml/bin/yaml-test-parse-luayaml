@@ -1,0 +1,52 @@
+#!/usr/bin/env lua
+
+local parser = require ('yaml').parser
+
+local yaml = io.read("*a")
+
+local events = {
+  ['STREAM_START'] = '+STR',
+  ['DOCUMENT_START'] = '+DOC',
+  ['MAPPING_START'] = '+MAP',
+  ['SEQUENCE_START'] = '+SEQ',
+  ['SCALAR'] = '=VAL',
+  ['ALIAS'] = '=ALI',
+  ['SEQUENCE_END'] = '-SEQ',
+  ['MAPPING_END'] = '-MAP',
+  ['DOCUMENT_END'] = '-DOC',
+  ['STREAM_END'] = '-STR',
+}
+
+local scalar = {
+  ['PLAIN'] = ':',
+  ['SINGLE_QUOTED'] = "'",
+  ['DOUBLE_QUOTED'] = '"',
+  ['FOLDED'] = '>',
+  ['LITERAL'] = '|',
+}
+
+for event in parser(yaml) do
+  local etype = events[event.type]
+  local style = event.style
+  local line = etype
+  if etype == '=VAL' then
+    line = line .. ' ' .. scalar[event.style]
+    local value = event.value
+    value = value:gsub('\n', '\\n')
+    value = value:gsub('\t', '\\t')
+    line = line .. value
+  elseif style == 'FLOW' then
+    if etype == '+MAP' then
+      line = line .. ' ' .. '{}'
+    elseif etype == '+SEQ' then
+      line = line .. ' ' .. '[]'
+    end
+  elseif etype == '=ALI' then
+    line = line .. ' ' .. event.anchor
+  elseif etype == '+DOC' and not event.implicit then
+    line = line .. ' ' .. '---'
+  elseif etype == '-DOC' and not event.implicit then
+    line = line .. ' ' .. '...'
+  end
+  print(line)
+end

@@ -9,6 +9,7 @@ testers="
   yaml-test-parse-hsyaml
   yaml-test-parse-libfyaml
   yaml-test-parse-libyaml
+  yaml-test-parse-luayaml
   yaml-test-parse-nimyaml
   yaml-test-parse-npmyaml
   yaml-test-parse-pyyaml

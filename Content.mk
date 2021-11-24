@@ -5,7 +5,7 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.0
+TAG_MAIN      := 0.1.1
 
 # Local Alpine builder base image:
 ALPINE	      := 3.15
@@ -44,6 +44,11 @@ TAG_LIBYAML   := 0.2.5
 FROM_LIBYAML  := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,LIBYAML)
 
+REPO_LUAYAML  := https://github.com/gvvaughan/lyaml
+TAG_LUAYAML   := 6.2.7
+FROM_LUAYAML  := yamlio/yaml-test-alpine:$(TAG_ALPINE)
+$(call add,LUAYAML)
+
 REPO_NIMYAML  := https://github.com/flyx/NimYAML
 TAG_NIMYAML   := 0.16.0
 FROM_NIMYAML  := nimlang/nim:1.6.0-alpine
@@ -75,7 +80,7 @@ FROM_YAMLPP   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,YAMLPP)
 
 REPO_YAMLREF  := https://github.com/yaml/yaml-reference-parser
-TAG_YAMLREF   := fcebce016650d97fd780095cb756467c2a572ba3
+TAG_YAMLREF   := c4bc42e16cc5f4bd1d74adff08cfc8cd0f29998c
 FROM_YAMLREF  := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,YAMLREF)
 
