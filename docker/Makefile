@@ -9,7 +9,7 @@ ROOT := $(shell git rev-parse --show-toplevel)
 BUILT := $(ROOT)/.git/built
 $(shell mkdir -p $(BUILT))
 
-include $(ROOT)/Content.mk
+include $(ROOT)/Config.mk
 
 DOCKER_USER ?= yamlio
 

@@ -5,17 +5,17 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.1
+TAG_MAIN      := 0.1.2
 
 # Local Alpine builder base image:
-ALPINE	      := 3.15
-TAG_ALPINE    := 0.0.2
+ALPINE	      := 3.15.0
+TAG_ALPINE    := 0.0.3
 FROM_ALPINE   := alpine:$(ALPINE)
 
 # YAML testing runtime sources:
 
 REPO_REFPARSE := https://github.com/yaml/yaml-reference-parser
-TAG_REFPARSE  := c4bc42e16cc5f4bd1d74adff08cfc8cd0f29998c
+TAG_REFPARSE  := 73414ba153e1fa96097206cfcf88cbc07edd217a
 FROM_REFPARSE := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,REFPARSE)
 
@@ -64,17 +64,17 @@ TAG_NPMYAML   := v2.0.0-9
 FROM_NPMYAML  := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,NPMYAML)
 
-# Installed from CPAN
+# https://metacpan.org/pod/YAML::PP
 TAG_PPYAML    := 0.030
 FROM_PPYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,PPYAML)
 
-# Installed from PyPI
+# https://pypi.org/project/PyYAML/
 TAG_PYYAML    := 6.0
 FROM_PYYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,PYYAML)
 
-# Installed from PyPI
+# https://pypi.org/project/ruamel.yaml/
 TAG_RUAMEL    := 0.17.17
 FROM_RUAMEL   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,RUAMEL)

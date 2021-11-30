@@ -1,4 +1,4 @@
-include Content.mk
+include Config.mk
 
 DOCKER_RUNTIMES := $(RUNTIMES:%=docker/%)
 

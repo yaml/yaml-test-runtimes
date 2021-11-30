@@ -38,8 +38,7 @@ It's currently around 400MB in size.
 ## Repository Layout
 
 * `Makefile` -- Automates all the tasks.
-* `Content.mk` -- All the runtime sources and version info is defined in this
-  file.
+* `Config.mk` -- All the runtime sources and version info is defined here.
 * `docker/` -- Each runtime component is defined in a subdirectory of this.
   * `Makefile` -- This Makefile is used to build each runtime.
   * `main/` -- The Dockerfile for building the final image.
