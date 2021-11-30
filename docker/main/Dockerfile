@@ -42,6 +42,7 @@ FROM alpine:$ALPINE
 # Install alpine runtime requirements:
 RUN apk update \
  && apk add \
+        bash \
         gmp \
         icu-libs \
         libffi \
