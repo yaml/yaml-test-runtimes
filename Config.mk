@@ -5,7 +5,7 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.2
+TAG_MAIN      := 0.1.3
 
 # Local Alpine builder base image:
 ALPINE	      := 3.15.0
@@ -30,7 +30,7 @@ FROM_DOTNET   := mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
 $(call add,DOTNET)
 
 REPO_GOYAML   := https://github.com/pantoniou/yaml
-TAG_GOYAML    := 571fa4dbd242ebc69b88b8eb4f55c878465bb8b0
+TAG_GOYAML    := 94c6e9d146b80adec76ceb99b393c2e1a796fd91
 FROM_GOYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,GOYAML)
 
