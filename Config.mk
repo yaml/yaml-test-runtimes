@@ -5,7 +5,7 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.4
+TAG_MAIN      := 0.1.5
 
 # Local Alpine builder base image:
 # https://hub.docker.com/_/alpine?tab=tags
@@ -16,7 +16,7 @@ FROM_ALPINE   := alpine:$(ALPINE)
 # YAML testing runtime sources:
 
 REPO_REFPARSE := https://github.com/yaml/yaml-reference-parser
-TAG_REFPARSE  := 73414ba153e1fa96097206cfcf88cbc07edd217a
+TAG_REFPARSE  := f269cbe35b56b22171ea6e3590baf3cd5d09eddc
 FROM_REFPARSE := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,REFPARSE)
 

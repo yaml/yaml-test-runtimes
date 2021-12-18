@@ -3,9 +3,9 @@ FROM $FROM
 ARG REPO
 ARG TAG
 
-RUN cpanm -n XXX
-
 WORKDIR /build
+
+COPY bin/* /export/usr/local/bin/
 
 RUN git init --quiet \
  && git remote add origin $REPO \
@@ -13,15 +13,16 @@ RUN git init --quiet \
  && git reset --hard FETCH_HEAD \
  && true
 
-COPY bin/* /export/usr/local/bin/
+RUN git fetch origin node_modules \
+ && make node_modules \
+ && rm -r node_modules/yaml \
+ && mv node_modules /export/ \
+ && true
 
-RUN cp -r \
-        /usr/local/share/perl5/site_perl/* \
-        /export/usr/local/share/perl5/site_perl/ \
+RUN cp \
+        javascript/bin/yaml-parser \
+        /export/usr/local/bin/yaml-reference-parser.js \
  && cp \
-        perl/bin/yaml-parser \
-        /export/usr/local/bin/yaml-reference-parser.pl \
- && cp -r \
-        perl/lib/* \
-        /export/usr/local/share/perl5/site_perl/ \
+        javascript/lib/* \
+        /export/usr/local/lib/ \
  && true

@@ -1,5 +1,5 @@
 #!/bin/sh
 
-yaml-reference-parser.pl --events
+yaml-reference-parser.js --events
 
 exit $?
