@@ -48,9 +48,9 @@ default:
 force:
 	rm -fr $(BUILD)
 
-docker-build:: $(BUILD)
+build:: $(BUILD)
 
-docker-shell:: docker-build
+shell:: build
 	touch /tmp/docker-bash-history
 	docker run -it --rm \
 	    -v $(ROOT):/host \
@@ -59,7 +59,7 @@ docker-shell:: docker-build
 	    $(DOCKER_IMAGE) \
 	    $(CMD)
 
-docker-push::
+push::
 	docker push $(DOCKER_IMAGE)
 
 $(BUILD): $(DEPS)

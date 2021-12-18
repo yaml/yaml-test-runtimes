@@ -11,17 +11,17 @@ force:
 build: docker/alpine $(DOCKER_RUNTIMES) docker/main
 
 push shell: build
-	$(QMAKE) -C docker/main -f ../Makefile docker-$@
+	$(QMAKE) -C docker/main $@
 
 test: build
-	$(QMAKE) -C docker/main -f ../Makefile docker-shell \
+	$(QMAKE) -C docker/main shell \
 	    CMD=test-yaml-runtimes
 
 docker/main: always
-	$(QMAKE) -C $@ -f ../Makefile docker-build \
+	$(QMAKE) -C $@ build \
 	    DOCKER_ARGS='--build-arg ALPINE=$(ALPINE) $(DOCKER_BUILD_ARGS)'
 
 docker/alpine $(DOCKER_RUNTIMES): always
-	$(QMAKE) -C $@ -f ../Makefile docker-build
+	$(QMAKE) -C $@ build
 
 always:
