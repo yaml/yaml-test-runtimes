@@ -3,11 +3,6 @@ FROM $FROM
 ARG REPO
 ARG TAG
 
-RUN apk add \
-        nodejs \
-        npm \
- && true
-
 RUN git clone --branch=$TAG $REPO /build
 
 WORKDIR /build

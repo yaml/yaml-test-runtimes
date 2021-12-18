@@ -11,6 +11,8 @@ RUN apk update \
         git \
         go \
         libtool \
+        nodejs \
+        npm \
         perl \
         perl-app-cpanminus \
         pkgconf \

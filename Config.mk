@@ -10,7 +10,7 @@ TAG_MAIN      := 0.1.4
 # Local Alpine builder base image:
 # https://hub.docker.com/_/alpine?tab=tags
 ALPINE	      := 3.15.0
-TAG_ALPINE    := 0.0.3
+TAG_ALPINE    := 0.0.4
 FROM_ALPINE   := alpine:$(ALPINE)
 
 # YAML testing runtime sources:
