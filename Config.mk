@@ -5,9 +5,10 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.3
+TAG_MAIN      := 0.1.4
 
 # Local Alpine builder base image:
+# https://hub.docker.com/_/alpine?tab=tags
 ALPINE	      := 3.15.0
 TAG_ALPINE    := 0.0.3
 FROM_ALPINE   := alpine:$(ALPINE)
@@ -80,7 +81,7 @@ FROM_RUAMEL   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,RUAMEL)
 
 REPO_SNAKE    := https://bitbucket.org/snakeyaml/snakeyaml
-TAG_SNAKE     := 1ae5d5b705e19dab3344bd080a4ea08d69295fde
+TAG_SNAKE     := 2486ee54c8605a43b5307b688b6e81418b0a4a4b
 FROM_SNAKE    := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,SNAKE)
 
