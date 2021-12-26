@@ -5,7 +5,7 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.6
+TAG_MAIN      := 0.1.7
 
 # Local Alpine builder base image:
 # https://hub.docker.com/_/alpine?tab=tags
@@ -66,7 +66,7 @@ FROM_NPMYAML  := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,NPMYAML)
 
 # https://metacpan.org/pod/YAML::PP
-TAG_PPYAML    := 0.030
+TAG_PPYAML    := 0.031
 FROM_PPYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,PPYAML)
 
@@ -76,12 +76,12 @@ FROM_PYYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,PYYAML)
 
 # https://pypi.org/project/ruamel.yaml/
-TAG_RUAMEL    := 0.17.17
+TAG_RUAMEL    := 0.17.19
 FROM_RUAMEL   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,RUAMEL)
 
 REPO_SNAKE    := https://bitbucket.org/snakeyaml/snakeyaml
-TAG_SNAKE     := 2486ee54c8605a43b5307b688b6e81418b0a4a4b
+TAG_SNAKE     := snakeyaml-1.30
 FROM_SNAKE    := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,SNAKE)
 
