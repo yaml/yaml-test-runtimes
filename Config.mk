@@ -5,7 +5,7 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.8
+TAG_MAIN      := 0.1.9
 
 # Local Alpine builder base image:
 # https://hub.docker.com/_/alpine?tab=tags
@@ -41,7 +41,7 @@ FROM_HSYAML   := alpine:3.10.2
 $(call add,HSYAML)
 
 REPO_LIBFYAML := https://github.com/pantoniou/libfyaml
-TAG_LIBFYAML  := v0.7.3
+TAG_LIBFYAML  := v0.7.4
 FROM_LIBFYAML := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,LIBFYAML)
 
@@ -85,4 +85,4 @@ TAG_SNAKE     := snakeyaml-1.30
 FROM_SNAKE    := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,SNAKE)
 
-RUNTIMES := $(shell echo "$(RUNTIMES)" | tr A-Z a-z)
+RUNTIMES := $(shell echo "$(RUNTIMES)" | tr A-Z a-zn)
