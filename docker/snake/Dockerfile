@@ -24,9 +24,11 @@ COPY java /java
 
 WORKDIR /java
 
-RUN mvn clean compile -Dsnakeversion=1.30
-
-RUN mvn assembly:single -Dsnakeversion=1.30
+RUN version=$TAG \
+ && version=${version#snakeyaml-} \
+ && mvn clean compile -Dsnakeversion="$version" \
+ && mvn assembly:single -Dsnakeversion="$version" \
+ && true
 
 RUN mkdir -p /export/java \
  && mv target/snake2json-*-jar-with-dependencies.jar /export/java
