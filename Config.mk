@@ -5,7 +5,7 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.9
+TAG_MAIN      := 0.1.10
 
 # Local Alpine builder base image:
 # https://hub.docker.com/_/alpine?tab=tags
