@@ -5,7 +5,7 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.11
+TAG_MAIN      := 0.1.12
 
 # Local Alpine builder base image:
 # https://hub.docker.com/_/alpine?tab=tags
@@ -61,7 +61,7 @@ FROM_NIMYAML  := nimlang/nim:1.6.0-alpine
 $(call add,NIMYAML)
 
 REPO_NPMYAML  := https://github.com/eemeli/yaml
-TAG_NPMYAML   := v2.0.0-9
+TAG_NPMYAML   := v2.0.0-10
 FROM_NPMYAML  := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,NPMYAML)
 
