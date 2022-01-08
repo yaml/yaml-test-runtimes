@@ -13,6 +13,7 @@ ARG NPMYAML
 ARG PPYAML
 ARG PYYAML
 ARG RUAMEL
+ARG RUSTYAML
 ARG SNAKE
 
 # Images to COPY runtime files from:
@@ -29,6 +30,7 @@ FROM yamlio/yaml-test-npmyaml:$NPMYAML   AS npmyaml
 FROM yamlio/yaml-test-ppyaml:$PPYAML     AS ppyaml
 FROM yamlio/yaml-test-pyyaml:$PYYAML     AS pyyaml
 FROM yamlio/yaml-test-ruamel:$RUAMEL     AS ruamel
+FROM yamlio/yaml-test-rustyaml:$RUSTYAML AS rustyaml
 FROM yamlio/yaml-test-snake:$SNAKE       AS snake
 
 # Need older libffi for Haskell runtimes:
@@ -76,4 +78,5 @@ COPY --from=npmyaml  /export/ /
 COPY --from=ppyaml   /export/ /
 COPY --from=pyyaml   /export/ /
 COPY --from=ruamel   /export/ /
+COPY --from=rustyaml /export/ /
 COPY --from=snake    /export/ /
