@@ -50,7 +50,7 @@ impl EventReceiver for Reporter {
                 } else {
                     "".into()
                 };
-                format!("=VAL{}{} {}{}", format_index(idx), tag, kind, text)
+                format!("=VAL{}{} {}{}", format_index(idx), tag, kind, format_text(text))
             }
             Event::Alias(idx) => format!("=ALI *{}", idx),
             _ => return,
@@ -65,4 +65,18 @@ fn format_index(idx: usize) -> String {
     } else {
         "".into()
     }
+}
+
+fn format_text(text: &str) -> String {
+    let mut text = text.to_owned();
+    for (ch, replacement) in [
+        ('\\', r#"\\"#),
+        ('\n', "\\n"),
+        ('\r', "\\r"),
+        ('\x08', "\\b"),
+        ('\t', "\\t"),
+    ] {
+        text = text.replace(ch, replacement);
+    }
+    text
 }
