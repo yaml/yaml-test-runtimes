@@ -15,6 +15,7 @@ ARG PYYAML
 ARG RUAMEL
 ARG RUSTYAML
 ARG SNAKE
+ARG SNAKEENG
 
 # Images to COPY runtime files from:
 FROM yamlio/yaml-test-refparse:$REFPARSE AS refparse
@@ -32,6 +33,7 @@ FROM yamlio/yaml-test-pyyaml:$PYYAML     AS pyyaml
 FROM yamlio/yaml-test-ruamel:$RUAMEL     AS ruamel
 FROM yamlio/yaml-test-rustyaml:$RUSTYAML AS rustyaml
 FROM yamlio/yaml-test-snake:$SNAKE       AS snake
+FROM yamlio/yaml-test-snakeeng:$SNAKEENG AS snakeeng
 
 # Need older libffi for Haskell runtimes:
 FROM alpine:3.10                         AS alpine310
@@ -80,3 +82,4 @@ COPY --from=pyyaml   /export/ /
 COPY --from=ruamel   /export/ /
 COPY --from=rustyaml /export/ /
 COPY --from=snake    /export/ /
+COPY --from=snakeeng /export/ /

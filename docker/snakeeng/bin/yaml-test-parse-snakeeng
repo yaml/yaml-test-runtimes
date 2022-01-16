@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+java -cp /java/snakeengine2events-*-jar-with-dependencies.jar org.yaml.editor.SnakeEngine2Events
