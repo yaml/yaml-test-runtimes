@@ -5,7 +5,7 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.19
+TAG_MAIN      := 0.1.21
 
 # Local Alpine builder base image:
 # https://hub.docker.com/_/alpine?tab=tags
@@ -41,7 +41,7 @@ FROM_HSYAML   := alpine:3.10.2
 $(call add,HSYAML)
 
 REPO_LIBFYAML := https://github.com/pantoniou/libfyaml
-TAG_LIBFYAML  := v0.7.11
+TAG_LIBFYAML  := v0.7.12
 FROM_LIBFYAML := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,LIBFYAML)
 
@@ -74,6 +74,11 @@ $(call add,PPYAML)
 TAG_PYYAML    := 6.0
 FROM_PYYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,PYYAML)
+
+REPO_RAPID    := https://github.com/biojppm/rapidyaml
+TAG_RAPID     := 4f03315c43fc488fd2489ea10bd9a9f63ff0baa9
+FROM_RAPID    := yamlio/yaml-test-alpine:$(TAG_ALPINE)
+$(call add,RAPID)
 
 # https://pypi.org/project/ruamel.yaml/
 TAG_RUAMEL    := 0.17.19

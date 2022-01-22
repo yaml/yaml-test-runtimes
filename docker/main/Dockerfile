@@ -12,6 +12,7 @@ ARG NIMYAML
 ARG NPMYAML
 ARG PPYAML
 ARG PYYAML
+ARG RAPID
 ARG RUAMEL
 ARG RUSTYAML
 ARG SNAKE
@@ -30,6 +31,7 @@ FROM yamlio/yaml-test-nimyaml:$NIMYAML   AS nimyaml
 FROM yamlio/yaml-test-npmyaml:$NPMYAML   AS npmyaml
 FROM yamlio/yaml-test-ppyaml:$PPYAML     AS ppyaml
 FROM yamlio/yaml-test-pyyaml:$PYYAML     AS pyyaml
+FROM yamlio/yaml-test-rapid:$RAPID       AS rapid
 FROM yamlio/yaml-test-ruamel:$RUAMEL     AS ruamel
 FROM yamlio/yaml-test-rustyaml:$RUSTYAML AS rustyaml
 FROM yamlio/yaml-test-snake:$SNAKE       AS snake
@@ -79,6 +81,7 @@ COPY --from=nimyaml  /export/ /
 COPY --from=npmyaml  /export/ /
 COPY --from=ppyaml   /export/ /
 COPY --from=pyyaml   /export/ /
+COPY --from=rapid    /export/ /
 COPY --from=ruamel   /export/ /
 COPY --from=rustyaml /export/ /
 COPY --from=snake    /export/ /
