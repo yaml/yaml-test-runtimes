@@ -35,5 +35,5 @@ RUN cp \
         /export/usr/local/bin/ryml-yaml-events \
  && true
 
-COPY bin/yaml-test-parse-rapid \
+COPY bin/yaml-test-parse-ryml \
         /export/usr/local/bin/

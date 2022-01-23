@@ -16,6 +16,7 @@ runtime requirements:
 * `yaml-test-parse-hsyaml`   -- https://github.com/haskell-hvr/HsYAML
 * `yaml-test-parse-libfyaml` -- https://github.com/pantoniou/libfyaml
 * `yaml-test-parse-libyaml`  -- https://github.com/yaml/libyaml
+* `yaml-test-parse-ryml`     -- https://github.com/biojppm/rapidyaml
 * `yaml-test-parse-nimyaml`  -- https://github.com/flyx/NimYAML
 * `yaml-test-parse-npmyaml`  -- https://github.com/eemeli/yaml
 * `yaml-test-parse-pyyaml`   -- https://github.com/yaml/pyyaml
