@@ -14,15 +14,8 @@ RUN git init --quiet \
  && git remote add origin $REPO \
  && git fetch origin $TAG \
  && git reset --hard FETCH_HEAD \
- && true
-
-RUN git submodule add https://github.com/biojppm/c4fs ext/c4fs \
  && git submodule update --init --recursive \
  && true
-
-COPY patch /patch
-
-RUN patch -p1 < /patch
 
 RUN cmake \
         -S . \
@@ -37,7 +30,7 @@ RUN cmake \
         --target ryml-yaml-events \
  && true
 
-RUN cp -fav \
+RUN cp \
         "$(find build -name 'ryml-yaml-events*' -type f)" \
         /export/usr/local/bin/ryml-yaml-events \
  && true

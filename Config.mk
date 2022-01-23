@@ -5,7 +5,7 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.21
+TAG_MAIN      := 0.1.22
 
 # Local Alpine builder base image:
 # https://hub.docker.com/_/alpine?tab=tags
@@ -76,7 +76,7 @@ FROM_PYYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,PYYAML)
 
 REPO_RAPID    := https://github.com/biojppm/rapidyaml
-TAG_RAPID     := 4f03315c43fc488fd2489ea10bd9a9f63ff0baa9
+TAG_RAPID     := 70664a07d3cc20b34d6202ef069c5df728ad165d
 FROM_RAPID    := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,RAPID)
 
