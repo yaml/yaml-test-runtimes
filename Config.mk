@@ -76,7 +76,7 @@ FROM_PYYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,PYYAML)
 
 REPO_RAPID    := https://github.com/biojppm/rapidyaml
-TAG_RAPID     := 70664a07d3cc20b34d6202ef069c5df728ad165d
+TAG_RAPID     := master  # TODO: change to upcoming release
 FROM_RAPID    := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,RAPID)
 
