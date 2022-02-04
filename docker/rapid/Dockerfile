@@ -20,8 +20,9 @@ RUN git init --quiet \
 RUN cmake \
         -S . \
         -B build \
-        -DBUILD_SHARED_LIBS=OFF \
-        -DRYML_BUILD_TOOLS=ON \
+        -D CMAKE_BUILD_TYPE=Debug \
+        -D BUILD_SHARED_LIBS=OFF \
+        -D RYML_BUILD_TOOLS=ON \
  && true
 
 RUN cmake \
