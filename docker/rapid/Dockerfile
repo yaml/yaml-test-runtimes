@@ -23,6 +23,7 @@ RUN cmake \
         -D CMAKE_BUILD_TYPE=Debug \
         -D BUILD_SHARED_LIBS=OFF \
         -D RYML_BUILD_TOOLS=ON \
+        -D RYML_WITH_TAB_TOKENS=ON \
  && true
 
 RUN cmake \
