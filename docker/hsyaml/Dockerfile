@@ -25,6 +25,7 @@ RUN cabal update \
 
 COPY bin/* /export/usr/local/bin/
 
-RUN cp \
-        dist-newstyle/build/x86_64-linux/ghc-8.4.3/HsYAML-0.2.1.0/x/yaml-test/build/yaml-test/yaml-test \
+RUN tag=$TAG \
+ && cp \
+        dist-newstyle/build/x86_64-linux/ghc-8.4.3/HsYAML-${tag#v}/x/yaml-test/build/yaml-test/yaml-test \
         /export/usr/local/bin/hsyaml-parser

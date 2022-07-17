@@ -5,7 +5,7 @@ endef
 
 # Final all runtimes image created by `make build`:
 IMAGE_MAIN    := yaml-test-runtimes
-TAG_MAIN      := 0.1.22
+TAG_MAIN      := 0.1.32
 
 # Local Alpine builder base image:
 # https://hub.docker.com/_/alpine?tab=tags
@@ -16,7 +16,7 @@ FROM_ALPINE   := alpine:$(ALPINE)
 # YAML testing runtime sources:
 
 REPO_REFPARSE := https://github.com/yaml/yaml-reference-parser
-TAG_REFPARSE  := 7366566aece64f147324b8fddcb6afa8e44ded07
+TAG_REFPARSE  := f00319457419feacddf743d75eb317dacf5caf4b
 FROM_REFPARSE := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,REFPARSE)
 
@@ -36,7 +36,7 @@ FROM_GOYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,GOYAML)
 
 REPO_HSYAML   := https://github.com/haskell-hvr/HsYAML
-TAG_HSYAML    := v0.2.1.0
+TAG_HSYAML    := v0.2.1.1
 FROM_HSYAML   := alpine:3.10.2
 $(call add,HSYAML)
 
@@ -56,17 +56,17 @@ FROM_LUAYAML  := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,LUAYAML)
 
 REPO_NIMYAML  := https://github.com/flyx/NimYAML
-TAG_NIMYAML   := 0.16.0
+TAG_NIMYAML   := 1.0.0
 FROM_NIMYAML  := nimlang/nim:1.6.0-alpine
 $(call add,NIMYAML)
 
 REPO_NPMYAML  := https://github.com/eemeli/yaml
-TAG_NPMYAML   := v2.0.0-10
+TAG_NPMYAML   := v2.1.1
 FROM_NPMYAML  := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,NPMYAML)
 
 # https://metacpan.org/pod/YAML::PP
-TAG_PPYAML    := 0.031
+TAG_PPYAML    := 0.034
 FROM_PPYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,PPYAML)
 
@@ -76,17 +76,17 @@ FROM_PYYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,PYYAML)
 
 REPO_RAPID    := https://github.com/biojppm/rapidyaml
-TAG_RAPID     := master  # TODO: change to upcoming release
+TAG_RAPID     := 0.4.1
 FROM_RAPID    := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,RAPID)
 
 # https://pypi.org/project/ruamel.yaml/
-TAG_RUAMEL    := 0.17.19
+TAG_RUAMEL    := 0.17.21
 FROM_RUAMEL   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,RUAMEL)
 
 REPO_RUSTYAML := https://github.com/dtolnay/serde-yaml
-TAG_RUSTYAML  := 0.8.23
+TAG_RUSTYAML  := 0.8.26
 FROM_RUSTYAML := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,RUSTYAML)
 
@@ -100,4 +100,4 @@ TAG_SNAKEENG  := 2.4-SNAPSHOT
 FROM_SNAKEENG := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,SNAKEENG)
 
-RUNTIMES := $(shell echo "$(RUNTIMES)" | tr A-Z a-zn)
+RUNTIMES := $(shell echo "$(RUNTIMES)" | tr A-Z a-z)

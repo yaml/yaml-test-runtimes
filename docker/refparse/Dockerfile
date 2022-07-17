@@ -20,9 +20,9 @@ RUN git fetch origin node_modules \
  && true
 
 RUN cp \
-        javascript/bin/yaml-parser \
+        parser-1.2/javascript/bin/yaml-parser \
         /export/usr/local/bin/yaml-reference-parser.js \
  && cp \
-        javascript/lib/* \
+        parser-1.2/javascript/lib/* \
         /export/usr/local/lib/ \
  && true

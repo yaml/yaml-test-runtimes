@@ -12,7 +12,7 @@ WORKDIR /build
 
 RUN git init --quiet \
  && git remote add origin $REPO \
- && git fetch origin $TAG \
+ && git fetch origin v$TAG \
  && git reset --hard FETCH_HEAD \
  && git submodule update --init --recursive \
  && true

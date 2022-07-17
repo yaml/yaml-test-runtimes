@@ -5,6 +5,8 @@ DOCKER_RUNTIMES := $(RUNTIMES:%=docker/%)
 QMAKE := $(MAKE) --no-print-directory
 
 
+default:
+
 force:
 	rm -fr .git/built/
 
