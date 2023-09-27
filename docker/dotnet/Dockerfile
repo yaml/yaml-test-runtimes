@@ -9,10 +9,10 @@ ENV DOTNET_NOLOGO=1 \
     DOTNET_CLI_TELEMETRY_OPTOUT=1 \
     LIBNAME=dotnet-yamldotnet \
     HOME=/tmp/home \
-    VERSION=11.2.1 \
-    SOURCE=/v11.2.1.tar.gz
+    VERSION=$TAG \
+    SOURCE=/v$TAG.tar.gz
 
-RUN wget https://github.com/aaubry/YamlDotNet/archive/v11.2.1.tar.gz
+RUN wget $REPO/archive/v$TAG.tar.gz
 
 COPY src /src
 

@@ -3,6 +3,9 @@ FROM $FROM
 ARG REPO
 ARG TAG
 
+# XXX version on alpine:3.10.2
+ENV GHC_VERSION=8.4.3
+
 RUN apk update \
  && apk add \
         bash \
@@ -29,5 +32,5 @@ RUN cabal update \
 COPY bin/* /export/usr/local/bin/
 
 RUN cp \
-        dist-newstyle/build/x86_64-linux/ghc-8.4.3/YamlReference-0.10.0/x/yaml2yeast/build/yaml2yeast/yaml2yeast \
+        dist-newstyle/build/x86_64-linux/ghc-$GHC_VERSION/YamlReference-0.10.0/x/yaml2yeast/build/yaml2yeast/yaml2yeast \
         /export/usr/local/bin/

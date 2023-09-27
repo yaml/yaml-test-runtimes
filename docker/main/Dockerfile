@@ -16,7 +16,9 @@ ARG RAPID
 ARG RUAMEL
 ARG RUSTYAML
 ARG SNAKE
-ARG SNAKEENG
+
+# XXX not building on 2023-09-26
+# ARG SNAKEENG
 
 # Images to COPY runtime files from:
 FROM yamlio/yaml-test-refparse:$REFPARSE AS refparse
@@ -35,7 +37,9 @@ FROM yamlio/yaml-test-rapid:$RAPID       AS rapid
 FROM yamlio/yaml-test-ruamel:$RUAMEL     AS ruamel
 FROM yamlio/yaml-test-rustyaml:$RUSTYAML AS rustyaml
 FROM yamlio/yaml-test-snake:$SNAKE       AS snake
-FROM yamlio/yaml-test-snakeeng:$SNAKEENG AS snakeeng
+
+# XXX not building on 2023-09-26
+# FROM yamlio/yaml-test-snakeeng:$SNAKEENG AS snakeeng
 
 # Need older libffi for Haskell runtimes:
 FROM alpine:3.10                         AS alpine310
@@ -85,4 +89,7 @@ COPY --from=rapid    /export/ /
 COPY --from=ruamel   /export/ /
 COPY --from=rustyaml /export/ /
 COPY --from=snake    /export/ /
-COPY --from=snakeeng /export/ /
+
+# XXX not building on 2023-09-26
+# COPY --from=snakeeng /export/ /
+

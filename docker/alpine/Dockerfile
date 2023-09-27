@@ -10,6 +10,7 @@ RUN apk update \
         curl \
         git \
         go \
+        icu-data-full \
         libtool \
         nodejs \
         npm \

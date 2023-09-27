@@ -12,17 +12,21 @@ runtime requirements:
 
 * `yaml-test-parse-dotnet`   -- https://github.com/aaubry/YamlDotNet
 * `yaml-test-parse-goyaml`   -- https://github.com/go-yaml/yaml
-* `yaml-test-parse-hsref`    -- https://github.com/orenbenkiki/yamlreference
 * `yaml-test-parse-hsyaml`   -- https://github.com/haskell-hvr/HsYAML
 * `yaml-test-parse-libfyaml` -- https://github.com/pantoniou/libfyaml
 * `yaml-test-parse-libyaml`  -- https://github.com/yaml/libyaml
+* `yaml-test-parse-luayaml`  -- https://github.com/gvvaughan/lyaml
 * `yaml-test-parse-nimyaml`  -- https://github.com/flyx/NimYAML
 * `yaml-test-parse-npmyaml`  -- https://github.com/eemeli/yaml
+* `yaml-test-parse-ppyaml`   -- https://github.com/perlpunk/YAML-PP-p5
 * `yaml-test-parse-pyyaml`   -- https://github.com/yaml/pyyaml
-* `yaml-test-parse-ruamel`   -- https://pypi.org/project/ruamel.yaml/
+* `yaml-test-parse-rapid`    -- https://github.com/biojppm/rapidyaml
+* `yaml-test-parse-refhs`    -- https://github.com/orenbenkiki/yamlreference
+* `yaml-test-parse-refparse` -- https://github.com/yaml/yaml-reference-parser
+* `yaml-test-parse-ruamel`   -- https://github.com/pycontribs/ruamel-yaml
+* `yaml-test-parse-rustyaml` -- https://github.com/dtolnay/serde-yaml
 * `yaml-test-parse-snake`    -- https://bitbucket.org/snakeyaml/snakeyaml
-* `yaml-test-parse-yamlpp`   -- https://github.com/perlpunk/YAML-PP-p5
-* `yaml-test-parse-yamlref`  -- https://github.com/yaml/yaml-reference-parser
+* `yaml-test-parse-snakeeng` -- https://bitbucket.org/snakeyaml/snakeyaml-engine
 
 ## Making the Docker Image
 
