@@ -12,7 +12,7 @@ WORKDIR /build
 
 RUN git init --quiet \
  && git remote add origin $REPO \
- && git fetch origin v$TAG \
+ && git fetch origin $TAG \
  && git reset --hard FETCH_HEAD \
  && git submodule update --init --recursive \
  && true
@@ -20,7 +20,7 @@ RUN git init --quiet \
 RUN cmake \
         -S . \
         -B build \
-        -D CMAKE_BUILD_TYPE=Debug \
+        -D CMAKE_BUILD_TYPE=Release \
         -D BUILD_SHARED_LIBS=OFF \
         -D RYML_BUILD_TOOLS=ON \
         -D RYML_WITH_TAB_TOKENS=ON \
@@ -37,5 +37,8 @@ RUN cp \
         /export/usr/local/bin/ryml-yaml-events \
  && true
 
-COPY bin/yaml-test-parse-rapid \
+COPY bin/yaml-test-parse-rapid-engine \
+        /export/usr/local/bin/
+
+COPY bin/yaml-test-parse-rapid-tree \
         /export/usr/local/bin/

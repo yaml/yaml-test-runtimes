@@ -15,7 +15,8 @@ testers="
   yaml-test-parse-npmyaml
   yaml-test-parse-ppyaml
   yaml-test-parse-pyyaml
-  yaml-test-parse-rapid
+  yaml-test-parse-rapid-engine
+  yaml-test-parse-rapid-tree
   yaml-test-parse-ruamel
   yaml-test-parse-rustyaml
   yaml-test-parse-snake

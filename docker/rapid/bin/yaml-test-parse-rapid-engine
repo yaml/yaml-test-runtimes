@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# ints handler:
+# YAML -> ints -> testsuite events
+
+ryml-yaml-events ts_ints -

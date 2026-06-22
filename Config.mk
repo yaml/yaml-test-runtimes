@@ -76,7 +76,7 @@ FROM_PYYAML   := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,PYYAML)
 
 REPO_RAPID    := https://github.com/biojppm/rapidyaml
-TAG_RAPID     := 0.10.0
+TAG_RAPID     := v0.15.2
 FROM_RAPID    := yamlio/yaml-test-alpine:$(TAG_ALPINE)
 $(call add,RAPID)
 
